@@ -28,6 +28,9 @@
       <a href="#awards">Достижения</a>
     </nav>
     <div class="header__actions">
+      <button class="icon-btn icon-btn--search" type="button" data-search-open aria-label="Поиск по сайту" aria-expanded="false" aria-controls="search-panel">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
       <a class="header__phone" href="tel:+79251733345">+7 (925) 173-33-45</a>
       <a class="icon-btn icon-btn--max" href="#" aria-label="Написать в MAX" title="MAX">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 0 0-7.4 12.7L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
@@ -38,6 +41,24 @@
       <a class="btn btn--primary btn--sm header__cta" href="#contact">Оставить заявку</a>
       <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
     </div>
+  </div>
+  <div class="search-panel" id="search-panel" hidden>
+    <form class="search" role="search" action="catalog.html">
+      <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input class="search__input" type="search" name="q" placeholder="Поиск: товар, бренд, оборудование, отрасль…" autocomplete="off" aria-label="Поиск по сайту">
+      <button class="search__close" type="button" data-search-close aria-label="Закрыть поиск">×</button>
+    </form>
+    <div class="search__suggest">
+      <p class="search__label">Часто ищут</p>
+      <div class="search__chips">
+        <button type="button" class="search__chip">Комбо-набор</button>
+        <button type="button" class="search__chip">Перекись водорода</button>
+        <button type="button" class="search__chip">Насос дозирующий</button>
+        <button type="button" class="search__chip">Усилитель стирки</button>
+        <button type="button" class="search__chip">Пенная станция</button>
+      </div>
+    </div>
+    <ul class="search__results" aria-live="polite"></ul>
   </div>
   <div class="mobile-menu" id="mobile-menu" hidden>
     <nav aria-label="Мобильное меню">
@@ -80,19 +101,19 @@
 
     <dl class="stats">
       <div class="stats__item">
-        <dt class="stats__num">&gt;5 <small>лет</small></dt>
+        <dt class="stats__num">&gt;<span data-count="5">5</span> <small>лет</small></dt>
         <dd>бесперебойной работы наших систем на объектах</dd>
       </div>
       <div class="stats__item">
-        <dt class="stats__num">25,9<small>%</small></dt>
+        <dt class="stats__num"><span data-count="25.9" data-decimals="1">25,9</span><small>%</small></dt>
         <dd>литров химии экономим клиентам ежемесячно</dd>
       </div>
       <div class="stats__item">
-        <dt class="stats__num">150+</dt>
+        <dt class="stats__num"><span data-count="150">150</span>+</dt>
         <dd>проектов умных систем дозирования ежегодно</dd>
       </div>
       <div class="stats__item">
-        <dt class="stats__num">10&nbsp;000+</dt>
+        <dt class="stats__num"><span data-count="10000">10&nbsp;000</span>+</dt>
         <dd>совместно реализованных проектов по всей РФ</dd>
       </div>
     </dl>
@@ -239,14 +260,10 @@
     <div class="about">
       <div class="about__media">
         <img src="assets/img/about.jpg" alt="Специалисты Дистрклин у дозирующей станции" loading="lazy">
-        <div class="about__badge">
-          <img src="assets/img/logo-mark.svg" alt="" width="40" height="40">
-          <span><b>ООО «Дистрклин»</b>сервисный поставщик автоматических решений</span>
-        </div>
       </div>
       <div class="about__text">
         <p class="eyebrow">О компании</p>
-        <h2 class="h2">Мы не поставляем продукт — мы&nbsp;предоставляем нужный вам результат</h2>
+        <h2 class="h2">Мы не поставляем продукт&nbsp;— мы&nbsp;предоставляем нужный вам результат</h2>
         <p class="lead"><b>ООО «Дистрклин»</b> — сервисный поставщик надёжных автоматических решений и&nbsp;разработок в&nbsp;области эффективности химических реакций профессиональных моющих средств в&nbsp;работе со&nbsp;всеми видами загрязнений, инфекций и&nbsp;бактерий по&nbsp;заданным стандартам чистоты заказчика.</p>
         <p>Умные технологии компании построены на&nbsp;опытном изучении совместимости качественных компонентов моющих средств избранных мировых и&nbsp;российских брендов. Личные контакты с&nbsp;ведущими производителями позволяют нам выводить в&nbsp;оборот лучшие технологические разработки для прорывных нестандартных решений на&nbsp;площадках наших заказчиков.</p>
         <div class="about__goal">
@@ -267,13 +284,13 @@
           <button class="round-btn" type="button" data-scroll="awards" data-dir="1" aria-label="Вперёд"><svg viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
-      <!-- Чтобы добавить сертификат: положите файл в assets/img/certificates/ и замените блок .cert__ph на <img src="..." alt="..."> -->
+      <!-- Сертификаты: assets/img/certificates/<имя>.jpg (крупно) и <имя>-sm.jpg (превью) -->
       <div class="awards__track" data-track="awards">
-        <figure class="cert"><button class="cert__frame" type="button"><span class="cert__ph"><span>Диплом</span>Лидер продаж<br>«Химия для стирки»</span></button><figcaption>Novelhim · лидер продаж</figcaption></figure>
-        <figure class="cert"><button class="cert__frame" type="button"><span class="cert__ph"><span>Сертификат</span>официального<br>дистрибьютора</span></button><figcaption>Сертификат дистрибьютора</figcaption></figure>
-        <figure class="cert"><button class="cert__frame" type="button"><span class="cert__ph"><span>Сертификат</span>партнёра<br>Seko</span></button><figcaption>Партнёр Seko</figcaption></figure>
-        <figure class="cert"><button class="cert__frame" type="button"><span class="cert__ph"><span>Диплом</span>за вклад<br>в развитие</span></button><figcaption>Диплом партнёра</figcaption></figure>
-        <figure class="cert"><button class="cert__frame" type="button"><span class="cert__ph"><span>Сертификат</span>соответствия<br>продукции</span></button><figcaption>Сертификат соответствия</figcaption></figure>
+        <figure class="cert"><button class="cert__frame" type="button" data-full="assets/img/certificates/seko.jpg" aria-label="Открыть: Сертификат дистрибьютора Seko"><img src="assets/img/certificates/seko-sm.jpg" alt="Сертификат дистрибьютора Seko" loading="lazy"></button><figcaption>Seko · дистрибьютор</figcaption></figure>
+        <figure class="cert"><button class="cert__frame" type="button" data-full="assets/img/certificates/a1pro.jpg" aria-label="Открыть: Сертификат официального дистрибьютора A1pro"><img src="assets/img/certificates/a1pro-sm.jpg" alt="Сертификат официального дистрибьютора A1pro" loading="lazy"></button><figcaption>A1pro · официальный дистрибьютор</figcaption></figure>
+        <figure class="cert"><button class="cert__frame" type="button" data-full="assets/img/certificates/cinalab.jpg" aria-label="Открыть: Сертификат официального дистрибьютора Cinalab"><img src="assets/img/certificates/cinalab-sm.jpg" alt="Сертификат официального дистрибьютора Cinalab" loading="lazy"></button><figcaption>Cinalab · официальный дистрибьютор</figcaption></figure>
+        <figure class="cert"><button class="cert__frame" type="button" data-full="assets/img/certificates/novelhim.jpg" aria-label="Открыть: Диплом Novelhim «Лидер продаж. Химия для стирки»"><img src="assets/img/certificates/novelhim-sm.jpg" alt="Диплом Novelhim «Лидер продаж. Химия для стирки»" loading="lazy"></button><figcaption>Novelhim · лидер продаж</figcaption></figure>
+        <figure class="cert"><button class="cert__frame" type="button" data-full="assets/img/certificates/pdc.jpg" aria-label="Открыть: Свидетельство «Лучший дистрибьютор» Приволжского дезинфекционного центра"><img src="assets/img/certificates/pdc-sm.jpg" alt="Свидетельство «Лучший дистрибьютор» Приволжского дезинфекционного центра" loading="lazy"></button><figcaption>ПДЦ · лучший дистрибьютор 2025</figcaption></figure>
       </div>
     </div>
   </div>
@@ -281,9 +298,11 @@
 
 <!-- ============ ПАРТНЁРЫ ============ -->
 <section class="partners" aria-label="Наши партнёры">
-  <div class="container partners__head">
-    <p class="eyebrow">Партнёры</p>
-    <p class="partners__title">Работаем с&nbsp;ведущими производителями химии и&nbsp;оборудования</p>
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Партнёры</p>
+      <h2 class="h2">Работаем с&nbsp;ведущими производителями химии и&nbsp;оборудования</h2>
+    </div>
   </div>
   <div class="marquee">
     <div class="marquee__track">
@@ -376,13 +395,13 @@
       </nav>
       <nav class="footer__col" aria-label="Отрасли">
         <p class="footer__h">Отрасли</p>
-        <a href="#clients" data-goto-sector="0">Госзаказчики</a>
-        <a href="#clients" data-goto-sector="1">Лечебные учреждения</a>
-        <a href="#clients" data-goto-sector="2">Пищевые производства</a>
-        <a href="#clients" data-goto-sector="3">Отели и санатории</a>
-        <a href="#clients" data-goto-sector="4">Химчистки и прачечные</a>
-        <a href="#clients" data-goto-sector="5">Фитнес и SPA</a>
-        <a href="#clients" data-goto-sector="6">Клининговые компании</a>
+        <a href="#sector-1" data-goto-sector="0">Госзаказчики</a>
+        <a href="#sector-2" data-goto-sector="1">Лечебные учреждения</a>
+        <a href="#sector-3" data-goto-sector="2">Пищевые производства</a>
+        <a href="#sector-4" data-goto-sector="3">Отели и санатории</a>
+        <a href="#sector-5" data-goto-sector="4">Химчистки и прачечные</a>
+        <a href="#sector-6" data-goto-sector="5">Фитнес и SPA</a>
+        <a href="#sector-7" data-goto-sector="6">Клининговые компании</a>
       </nav>
       <div class="footer__col footer__contacts">
         <p class="footer__h">Контакты</p>
@@ -412,6 +431,7 @@
   <div class="lightbox__body"></div>
 </div>
 
+<script src="js/search.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

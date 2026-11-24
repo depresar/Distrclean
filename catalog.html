@@ -28,6 +28,9 @@
       <a href="index.html#awards">Достижения</a>
     </nav>
     <div class="header__actions">
+      <button class="icon-btn icon-btn--search" type="button" data-search-open aria-label="Поиск по сайту" aria-expanded="false" aria-controls="search-panel">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
       <a class="header__phone" href="tel:+79251733345">+7 (925) 173-33-45</a>
       <a class="icon-btn icon-btn--max" href="#" aria-label="Написать в MAX" title="MAX">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 0 0-7.4 12.7L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
@@ -38,6 +41,24 @@
       <a class="btn btn--primary btn--sm header__cta" href="index.html#contact">Оставить заявку</a>
       <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
     </div>
+  </div>
+  <div class="search-panel" id="search-panel" hidden>
+    <form class="search" role="search" action="catalog.html">
+      <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input class="search__input" type="search" name="q" placeholder="Поиск: товар, бренд, оборудование, отрасль…" autocomplete="off" aria-label="Поиск по сайту">
+      <button class="search__close" type="button" data-search-close aria-label="Закрыть поиск">×</button>
+    </form>
+    <div class="search__suggest">
+      <p class="search__label">Часто ищут</p>
+      <div class="search__chips">
+        <button type="button" class="search__chip">Комбо-набор</button>
+        <button type="button" class="search__chip">Перекись водорода</button>
+        <button type="button" class="search__chip">Насос дозирующий</button>
+        <button type="button" class="search__chip">Усилитель стирки</button>
+        <button type="button" class="search__chip">Пенная станция</button>
+      </div>
+    </div>
+    <ul class="search__results" aria-live="polite"></ul>
   </div>
   <div class="mobile-menu" id="mobile-menu" hidden>
     <nav aria-label="Мобильное меню">
@@ -58,30 +79,30 @@
     <div class="section-head">
       <p class="eyebrow">Каталог</p>
       <h1 class="h2">Каталог продукции</h1>
-      <p class="lead" style="margin-top:16px;color:var(--muted)">Раздел в разработке: здесь появятся товары по категориям. Пока можно скачать PDF-каталоги или оставить заявку — подберём решение под ваш объект.</p>
+      <p class="lead" style="margin-top:12px;color:var(--muted)">Раздел в разработке: здесь появятся товары по категориям. Пока можно скачать PDF-каталоги или оставить заявку — подберём решение под ваш объект.</p>
     </div>
     <div class="cats">
-      <a class="cat" href="#dezoksid">
+      <a class="cat" id="dezoksid" href="index.html#contact">
         <span class="cat__img"><img src="assets/img/catalog/dezoksid.jpg" alt="Дезоксид — дезинфицирующие средства" loading="lazy"></span>
         <span class="cat__body"><span class="chip chip--hot">Хит продаж</span><span class="cat__name">Дезоксид</span><span class="cat__arrow" aria-hidden="true"></span></span>
       </a>
-      <a class="cat" href="#novelhim">
+      <a class="cat" id="novelhim" href="index.html#contact">
         <span class="cat__img"><img src="assets/img/catalog/novelhim.jpg" alt="Novelhim — профессиональные моющие средства" loading="lazy"></span>
         <span class="cat__body"><span class="chip">Бренд</span><span class="cat__name">Novelhim</span><span class="cat__arrow" aria-hidden="true"></span></span>
       </a>
-      <a class="cat" href="#ecolab">
+      <a class="cat" id="ecolab" href="index.html#contact">
         <span class="cat__img"><img src="assets/img/catalog/ecolab.jpg" alt="Ecolab — профессиональная химия" loading="lazy"></span>
         <span class="cat__body"><span class="chip">Бренд</span><span class="cat__name">Ecolab</span><span class="cat__arrow" aria-hidden="true"></span></span>
       </a>
-      <a class="cat" href="#seko">
+      <a class="cat" id="seko" href="index.html#contact">
         <span class="cat__img"><img src="assets/img/catalog/seko.jpg" alt="Seko — дозирующее оборудование" loading="lazy"></span>
         <span class="cat__body"><span class="chip">Оборудование</span><span class="cat__name">Seko</span><span class="cat__arrow" aria-hidden="true"></span></span>
       </a>
-      <a class="cat" href="#combo">
+      <a class="cat" id="combo" href="index.html#contact">
         <span class="cat__img"><img src="assets/img/catalog/combo.jpg" alt="Комбо-наборы" loading="lazy"></span>
         <span class="cat__body"><span class="chip chip--green">Выгода</span><span class="cat__name">Комбо-наборы</span><span class="cat__arrow" aria-hidden="true"></span></span>
       </a>
-      <a class="cat" href="#misc">
+      <a class="cat" id="misc" href="index.html#contact">
         <span class="cat__img"><img src="assets/img/catalog/misc.jpg" alt="Разное и аксессуары" loading="lazy"></span>
         <span class="cat__body"><span class="chip">Аксессуары</span><span class="cat__name">Разное</span><span class="cat__arrow" aria-hidden="true"></span></span>
       </a>
@@ -141,13 +162,13 @@
       </nav>
       <nav class="footer__col" aria-label="Отрасли">
         <p class="footer__h">Отрасли</p>
-        <a href="index.html#clients" data-goto-sector="0">Госзаказчики</a>
-        <a href="index.html#clients" data-goto-sector="1">Лечебные учреждения</a>
-        <a href="index.html#clients" data-goto-sector="2">Пищевые производства</a>
-        <a href="index.html#clients" data-goto-sector="3">Отели и санатории</a>
-        <a href="index.html#clients" data-goto-sector="4">Химчистки и прачечные</a>
-        <a href="index.html#clients" data-goto-sector="5">Фитнес и SPA</a>
-        <a href="index.html#clients" data-goto-sector="6">Клининговые компании</a>
+        <a href="index.html#sector-1" data-goto-sector="0">Госзаказчики</a>
+        <a href="index.html#sector-2" data-goto-sector="1">Лечебные учреждения</a>
+        <a href="index.html#sector-3" data-goto-sector="2">Пищевые производства</a>
+        <a href="index.html#sector-4" data-goto-sector="3">Отели и санатории</a>
+        <a href="index.html#sector-5" data-goto-sector="4">Химчистки и прачечные</a>
+        <a href="index.html#sector-6" data-goto-sector="5">Фитнес и SPA</a>
+        <a href="index.html#sector-7" data-goto-sector="6">Клининговые компании</a>
       </nav>
       <div class="footer__col footer__contacts">
         <p class="footer__h">Контакты</p>
@@ -167,9 +188,11 @@
   </div>
 </footer>
 
+<script src="js/search.js"></script>
 <script>
 var b=document.querySelector('.burger'),m=document.getElementById('mobile-menu');
 b.addEventListener('click',function(){var o=m.hidden;m.hidden=!o;b.setAttribute('aria-expanded',String(o));});
+window.addEventListener('scroll',function(){document.querySelector('.header').classList.toggle('is-scrolled',scrollY>20)},{passive:true});
 </script>
 </body>
 </html>

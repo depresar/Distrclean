@@ -38,6 +38,36 @@
   setHeroVideo();
   mqMobile.addEventListener('change', setHeroVideo);
 
+  /* ---------- Анимация цифр на обложке ---------- */
+  var counters = document.querySelectorAll('[data-count]');
+  var fmt = function (v, dec) {
+    var s = v.toFixed(dec).replace('.', ',');
+    var parts = s.split(',');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0');
+    return parts.join(',');
+  };
+  function runCounters() {
+    counters.forEach(function (el, i) {
+      var to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+      var dur = 1600 + i * 150, t0 = null;
+      el.textContent = fmt(0, dec);
+      var step = function (t) {
+        if (!t0) t0 = t;
+        var k = Math.min((t - t0) / dur, 1);
+        var e = 1 - Math.pow(1 - k, 3); // плавное замедление в конце
+        el.textContent = fmt(to * e, dec);
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }
+  if (!reduceMotion && counters.length) {
+    var statsEl = document.querySelector('.stats');
+    new IntersectionObserver(function (en, obs) {
+      if (en[0].isIntersecting) { setTimeout(runCounters, 250); obs.disconnect(); }
+    }, { threshold: 0.4 }).observe(statsEl);
+  }
+
   /* ---------- Направления (вкладки с видео) ---------- */
   var SECTORS = [
     {
@@ -203,7 +233,35 @@
     }
   }, { threshold: 0.35 }).observe(root);
 
+  // Одинаковая высота блока для всех отраслей — чтобы при переключении ничего не прыгало
+  function equalizeHeight() {
+    content.style.minHeight = '';
+    var saved = [titleEl.textContent, listEl.innerHTML], max = 0;
+    SECTORS.forEach(function (s) {
+      titleEl.textContent = s.title;
+      listEl.innerHTML = s.items.map(function (it) { return '<li><span><b>' + esc(it[0]) + ':</b> ' + esc(it[1]) + '</span></li>'; }).join('');
+      max = Math.max(max, content.offsetHeight);
+    });
+    titleEl.textContent = saved[0]; listEl.innerHTML = saved[1];
+    content.style.minHeight = max + 'px';
+  }
+
   select(0);
+  equalizeHeight();
+  var rt;
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(equalizeHeight, 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(equalizeHeight);
+
+  // Ссылки вида index.html#sector-3 (из поиска и подвала) открывают нужную отрасль
+  function openSectorFromHash() {
+    var m = /^#sector-(\d+)$/.exec(location.hash);
+    if (!m) return;
+    var i = Math.min(Math.max(+m[1] - 1, 0), SECTORS.length - 1);
+    root.classList.add('is-manual'); stopAuto(); select(i);
+    document.getElementById('clients').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+  window.addEventListener('hashchange', openSectorFromHash);
+  openSectorFromHash();
 
   // Ссылки из подвала на конкретную отрасль
   document.querySelectorAll('[data-goto-sector]').forEach(function (a) {
@@ -271,7 +329,10 @@
     f.addEventListener('click', function () {
       lastFocus = f;
       lbBody.innerHTML = '';
-      lbBody.appendChild(f.firstElementChild.cloneNode(true));
+      var img = document.createElement('img');
+      img.src = f.dataset.full || f.querySelector('img').src;
+      img.alt = f.querySelector('img').alt;
+      lbBody.appendChild(img);
       lb.hidden = false;
       lb.querySelector('.lightbox__close').focus();
     });
@@ -295,7 +356,7 @@
   var copy = group.cloneNode(true); copy.setAttribute('aria-hidden', 'true'); mTrack.appendChild(copy);
 
   /* ---------- Появление блоков при скролле ---------- */
-  var revealEls = document.querySelectorAll('.section-head, .offer__card, .cat, .downloads, .about__media, .about__text, .cert, .sectors, .consult');
+  var revealEls = document.querySelectorAll('.section .section-head, .offer__card, .cat, .downloads, .about__media, .about__text, .cert, .sectors, .consult');
   if ('IntersectionObserver' in window && !reduceMotion) {
     var ro = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
