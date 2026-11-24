@@ -273,10 +273,19 @@
   var sectorBox = form.querySelector('.form__sector');
   cta.addEventListener('click', function () {
     form.elements.sector.value = cta.dataset.sector || '';
+    sectorBox.innerHTML = 'Направление: <b></b>';
     sectorBox.querySelector('b').textContent = cta.dataset.sector || '';
     sectorBox.hidden = !cta.dataset.sector;
     setTimeout(function () { form.elements.name.focus({ preventScroll: true }); }, 600);
   });
+
+  // Пришли из каталога с кнопки «Запросить цену»: index.html?product=...#contact
+  var fromProduct = new URLSearchParams(location.search).get('product');
+  if (fromProduct) {
+    form.elements.sector.value = 'Товар: ' + fromProduct;
+    sectorBox.innerHTML = 'Товар: <b></b>'; sectorBox.querySelector('b').textContent = fromProduct;
+    sectorBox.hidden = false;
+  }
 
   /* ---------- Форма ---------- */
   var phone = form.elements.phone;

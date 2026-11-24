@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Каталог — Дистрклин</title>
-<meta name="description" content="Снижаем расходы на профессиональную химию до 30% за счёт умных автоматизированных технологий и систем дозирования. Для ЛПУ, HoReCa, пищевых производств, химчисток и прачечных.">
+<title>Каталог продукции — Дистрклин</title>
+<meta name="description" content="Каталог Дистрклин: профессиональная химия Novelhim, Ecolab, Дезоксид, A1 Pro, дозирующее оборудование Seko, комбо-наборы. Снижаем расходы на профессиональную химию до 30% за счёт умных автоматизированных технологий и систем дозирования. Для ЛПУ, HoReCa, пищевых производств, химчисток и прачечных.">
 <meta name="theme-color" content="#0B3F8C">
 <link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,15 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__inner">
+    <img src="assets/img/logo-mark.svg" alt="" width="64" height="64" class="preloader__mark">
+    <div class="preloader__bar"><span></span></div>
+  </div>
+</div>
+<script>(function(){var d=document.documentElement,t0=Date.now(),done=false;d.classList.add('is-loading');
+function hide(){if(done)return;done=true;setTimeout(function(){d.classList.remove('is-loading');d.classList.add('is-loaded');},Math.max(0,800-(Date.now()-t0)));}
+window.addEventListener('load',hide);setTimeout(hide,3000);})();</script>
 
 <!-- ============ ШАПКА ============ -->
 <header class="header" id="top">
@@ -23,7 +32,7 @@
     <nav class="nav" aria-label="Основное меню">
       <a href="index.html#about">О компании</a>
       <a href="index.html#offer">Услуги</a>
-      <a href="catalog.html">Каталог</a>
+      <a href="catalog.html" aria-current="page">Каталог</a>
       <a href="index.html#clients">Наши клиенты</a>
       <a href="index.html#awards">Достижения</a>
     </nav>
@@ -64,7 +73,7 @@
     <nav aria-label="Мобильное меню">
       <a href="index.html#about">О компании</a>
       <a href="index.html#offer">Услуги</a>
-      <a href="catalog.html">Каталог</a>
+      <a href="catalog.html" aria-current="page">Каталог</a>
       <a href="index.html#clients">Наши клиенты</a>
       <a href="index.html#awards">Достижения</a>
     </nav>
@@ -74,64 +83,60 @@
 </header>
 
 <main class="page-catalog">
-<section class="section section--tint">
+<section class="catalog-hero">
   <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Каталог</p>
-      <h1 class="h2">Каталог продукции</h1>
-      <p class="lead" style="margin-top:12px;color:var(--muted)">Раздел в разработке: здесь появятся товары по категориям. Пока можно скачать PDF-каталоги или оставить заявку — подберём решение под ваш объект.</p>
-    </div>
-    <div class="cats">
-      <a class="cat" id="dezoksid" href="index.html#contact">
-        <span class="cat__img"><img src="assets/img/catalog/dezoksid.jpg" alt="Дезоксид — дезинфицирующие средства" loading="lazy"></span>
-        <span class="cat__body"><span class="chip chip--hot">Хит продаж</span><span class="cat__name">Дезоксид</span><span class="cat__arrow" aria-hidden="true"></span></span>
-      </a>
-      <a class="cat" id="novelhim" href="index.html#contact">
-        <span class="cat__img"><img src="assets/img/catalog/novelhim.jpg" alt="Novelhim — профессиональные моющие средства" loading="lazy"></span>
-        <span class="cat__body"><span class="chip">Бренд</span><span class="cat__name">Novelhim</span><span class="cat__arrow" aria-hidden="true"></span></span>
-      </a>
-      <a class="cat" id="ecolab" href="index.html#contact">
-        <span class="cat__img"><img src="assets/img/catalog/ecolab.jpg" alt="Ecolab — профессиональная химия" loading="lazy"></span>
-        <span class="cat__body"><span class="chip">Бренд</span><span class="cat__name">Ecolab</span><span class="cat__arrow" aria-hidden="true"></span></span>
-      </a>
-      <a class="cat" id="seko" href="index.html#contact">
-        <span class="cat__img"><img src="assets/img/catalog/seko.jpg" alt="Seko — дозирующее оборудование" loading="lazy"></span>
-        <span class="cat__body"><span class="chip">Оборудование</span><span class="cat__name">Seko</span><span class="cat__arrow" aria-hidden="true"></span></span>
-      </a>
-      <a class="cat" id="combo" href="index.html#contact">
-        <span class="cat__img"><img src="assets/img/catalog/combo.jpg" alt="Комбо-наборы" loading="lazy"></span>
-        <span class="cat__body"><span class="chip chip--green">Выгода</span><span class="cat__name">Комбо-наборы</span><span class="cat__arrow" aria-hidden="true"></span></span>
-      </a>
-      <a class="cat" id="misc" href="index.html#contact">
-        <span class="cat__img"><img src="assets/img/catalog/misc.jpg" alt="Разное и аксессуары" loading="lazy"></span>
-        <span class="cat__body"><span class="chip">Аксессуары</span><span class="cat__name">Разное</span><span class="cat__arrow" aria-hidden="true"></span></span>
+    <nav class="crumbs" aria-label="Хлебные крошки"><a href="index.html">Главная</a><span>/</span><span>Каталог</span></nav>
+    <div class="catalog-hero__row">
+      <div>
+        <h1 class="h2">Каталог продукции</h1>
+        <p class="catalog-hero__lead">Профессиональная химия, дозирующее оборудование и&nbsp;готовые наборы. Цены и&nbsp;наличие уточняйте у&nbsp;менеджера&nbsp;— подберём решение под ваш объект.</p>
+      </div>
+      <a class="btn btn--outline" href="#downloads">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        PDF-каталоги
       </a>
     </div>
+  </div>
+</section>
 
+<div class="cat-toolbar">
+  <div class="container cat-toolbar__inner">
+    <label class="cat-search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input class="cat-search__input" type="search" placeholder="Найти в каталоге" aria-label="Поиск по каталогу" autocomplete="off">
+    </label>
+    <div class="cat-filter" role="group" aria-label="Разделы каталога"></div>
+    <span class="cat-count" aria-live="polite"></span>
+  </div>
+</div>
+
+<section class="catalog-list">
+  <div class="container">
+    <div id="catalog-root"></div>
     <div class="downloads" id="downloads">
       <div class="downloads__intro">
         <h3 class="h3">Каталоги в&nbsp;PDF</h3>
-        <p>Скачайте нужный каталог: ассортимент, характеристики и&nbsp;фасовки — чтобы изучить и&nbsp;согласовать внутри команды.</p>
+        <p>Полные каталоги производителей: ассортимент, характеристики, фасовки и&nbsp;режимы применения — удобно изучить и&nbsp;согласовать внутри команды.</p>
       </div>
       <ul class="downloads__list">
         <li>
-          <a class="dl" href="assets/pdf/catalog-1.pdf" download>
+          <a class="dl" href="assets/pdf/novelhim-2025.pdf" download target="_blank" rel="noopener">
             <span class="dl__icon" aria-hidden="true">PDF</span>
-            <span class="dl__text"><span class="dl__name">Каталог профессиональной химии</span><span class="dl__meta">PDF · размер уточняется</span></span>
+            <span class="dl__text"><span class="dl__name">Novelhim 2025 — промышленная химия</span><span class="dl__meta">Пищевая промышленность, стирка, химчистка, клининг · 36 стр. · 10 МБ</span></span>
             <span class="dl__btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
         </li>
         <li>
-          <a class="dl" href="assets/pdf/catalog-2.pdf" download>
+          <a class="dl" href="assets/pdf/novelhim-horeca-2026.pdf" download target="_blank" rel="noopener">
             <span class="dl__icon" aria-hidden="true">PDF</span>
-            <span class="dl__text"><span class="dl__name">Каталог дозирующего оборудования</span><span class="dl__meta">PDF · размер уточняется</span></span>
+            <span class="dl__text"><span class="dl__name">Novelhim HoReCa 2026</span><span class="dl__meta">Моющие средства для отелей, ресторанов и общепита · 7 стр. · 1 МБ</span></span>
             <span class="dl__btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
         </li>
         <li>
-          <a class="dl" href="assets/pdf/catalog-3.pdf" download>
+          <a class="dl" href="assets/pdf/seko-cleaning-hygiene-2026.pdf" download target="_blank" rel="noopener">
             <span class="dl__icon" aria-hidden="true">PDF</span>
-            <span class="dl__text"><span class="dl__name">Каталог для прачечных и&nbsp;химчисток</span><span class="dl__meta">PDF · размер уточняется</span></span>
+            <span class="dl__text"><span class="dl__name">Seko «Клининг и гигиена» 2026</span><span class="dl__meta">Дозирующее оборудование и системы · 102 стр. · 21 МБ</span></span>
             <span class="dl__btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
         </li>
@@ -139,6 +144,13 @@
     </div>
   </div>
 </section>
+
+<div class="pmodal" hidden role="dialog" aria-modal="true" aria-labelledby="pmodal-title">
+  <div class="pmodal__box">
+    <button class="pmodal__close" type="button" aria-label="Закрыть">×</button>
+    <div class="pmodal__body"></div>
+  </div>
+</div>
 </main>
 <!-- ============ ПОДВАЛ ============ -->
 <footer class="footer">
@@ -188,10 +200,13 @@
   </div>
 </footer>
 
+<script src="js/products.js"></script>
 <script src="js/search.js"></script>
+<script src="js/catalog.js"></script>
 <script>
 var b=document.querySelector('.burger'),m=document.getElementById('mobile-menu');
 b.addEventListener('click',function(){var o=m.hidden;m.hidden=!o;b.setAttribute('aria-expanded',String(o));});
+m.addEventListener('click',function(e){if(e.target.closest('a')){m.hidden=true;b.setAttribute('aria-expanded','false');}});
 window.addEventListener('scroll',function(){document.querySelector('.header').classList.toggle('is-scrolled',scrollY>20)},{passive:true});
 </script>
 </body>

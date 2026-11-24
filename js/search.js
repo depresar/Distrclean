@@ -34,6 +34,12 @@
     { type: 'Раздел', title: 'Контакты и заявка', url: home + '#contact', keys: 'контакты телефон почта заявка консультация адрес' }
   ];
 
+  // Товары из каталога (js/products.js)
+  var CATN = {}; (window.CATEGORIES || []).forEach(function (c) { CATN[c.id] = c.name; });
+  (window.PRODUCTS || []).forEach(function (p) {
+    INDEX.push({ type: 'Товар', title: p.name, url: cat + '#p-' + p.id, keys: (p.keys || '') + ' ' + p.desc + ' ' + (CATN[p.cat] || ''), img: p.img });
+  });
+
   var norm = function (s) { return s.toLowerCase().replace(/ё/g, 'е').replace(/[«»"'.,:;()!?]/g, ' '); };
   // грубый «стемминг»: сравниваем начала слов, чтобы «насоса», «насосы» находили «насос»
   var stem = function (w) { return w.length > 5 ? w.slice(0, w.length - 2) : w; };
@@ -48,10 +54,11 @@
       words.forEach(function (w) {
         if (it._hay.indexOf(w) !== -1) score += norm(it.title).indexOf(w) !== -1 ? 3 : 1;
       });
-      return { it: it, score: words.every(function (w) { return it._hay.indexOf(w) !== -1; }) ? score + 10 : score };
+      var all = words.every(function (w) { return it._hay.indexOf(w) !== -1; });
+      return { it: it, score: (all ? score + 10 : (words.length > 1 ? 0 : score)) + (all && it.type === 'Товар' ? 1 : 0) };
     }).filter(function (r) { return r.score > 0; })
       .sort(function (a, b) { return b.score - a.score; })
-      .slice(0, 7)
+      .slice(0, 8)
       .map(function (r) { return r.it; });
   }
 
@@ -71,7 +78,8 @@
       return;
     }
     list.innerHTML = res.map(function (it) {
-      return '<li><a class="search__item" href="' + it.url + '" data-search-go><span class="search__type">' + it.type + '</span><span class="search__title">' + esc(it.title) + '</span>' +
+      var pic = it.img ? '<img class="search__pic" src="assets/img/products/' + it.img + '-sm.webp" alt="" loading="lazy">' : '<span class="search__type">' + it.type + '</span>';
+      return '<li><a class="search__item" href="' + it.url + '" data-search-go>' + pic + '<span class="search__title">' + esc(it.title) + '</span>' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m0 0-5-5m5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>';
     }).join('');
   }
@@ -105,5 +113,5 @@
 
   // Открыли страницу каталога по ссылке вида catalog.html?q=...
   var q0 = new URLSearchParams(location.search).get('q');
-  if (q0) { input.value = q0; open(); render(); }
+  if (q0 && !onCatalog) { input.value = q0; open(); render(); }
 })();
