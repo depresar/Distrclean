@@ -49,7 +49,7 @@
   function runCounters() {
     counters.forEach(function (el, i) {
       var to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
-      var dur = 1600 + i * 150, t0 = null;
+      var dur = 2600 + i * 250, t0 = null;
       el.textContent = fmt(0, dec);
       var step = function (t) {
         if (!t0) t0 = t;
@@ -62,9 +62,19 @@
     });
   }
   if (!reduceMotion && counters.length) {
+    counters.forEach(function (el) { el.textContent = fmt(0, +(el.dataset.decimals || 0)); });
     var statsEl = document.querySelector('.stats');
     new IntersectionObserver(function (en, obs) {
-      if (en[0].isIntersecting) { setTimeout(runCounters, 250); obs.disconnect(); }
+      if (!en[0].isIntersecting) return;
+      obs.disconnect();
+      // ждём, пока уйдёт прелоадер, чтобы анимацию было видно
+      var html = document.documentElement;
+      var go = function () { setTimeout(runCounters, 350); };
+      if (!html.classList.contains('is-loading')) return go();
+      var mo = new MutationObserver(function () {
+        if (!html.classList.contains('is-loading')) { mo.disconnect(); go(); }
+      });
+      mo.observe(html, { attributes: true, attributeFilter: ['class'] });
     }, { threshold: 0.4 }).observe(statsEl);
   }
 
@@ -365,7 +375,7 @@
   var copy = group.cloneNode(true); copy.setAttribute('aria-hidden', 'true'); mTrack.appendChild(copy);
 
   /* ---------- Появление блоков при скролле ---------- */
-  var revealEls = document.querySelectorAll('.section .section-head, .offer__card, .cat, .downloads, .about__media, .about__text, .cert, .sectors, .consult');
+  var revealEls = document.querySelectorAll('.section .section-head, .offer__card, .cat, .downloads, .about__media, .about__text, .awards__track, .sectors, .consult');
   if ('IntersectionObserver' in window && !reduceMotion) {
     var ro = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {

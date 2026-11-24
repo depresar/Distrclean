@@ -101,9 +101,10 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeProduct(); });
 
   /* Переходы по ссылкам: #seko — раздел, #p-<товар> — окно товара, ?q= — поиск */
+  // Подкручиваем к началу списка, только если пользователь уже пролистал ниже него
   function scrollToList() {
-    var y = document.getElementById('catalog-root').getBoundingClientRect().top + window.scrollY - 170;
-    window.scrollTo({ top: Math.max(0, y) });
+    var top = document.getElementById('catalog-root').getBoundingClientRect().top;
+    if (top < 170) window.scrollTo({ top: Math.max(0, top + window.scrollY - 170) });
   }
   function fromUrl() {
     var h = location.hash.slice(1);
@@ -112,12 +113,15 @@
     if (CATS.some(function (c) { return c.id === h; })) { current = h; }
     render();
     if (h.indexOf('p-') === 0) openProduct(h.slice(2));
-    else if (current !== 'all' || q) scrollToList();
   }
   window.addEventListener('hashchange', function () {
     var h = location.hash.slice(1);
     if (h.indexOf('p-') === 0) openProduct(h.slice(2));
-    else if (CATS.some(function (c) { return c.id === h; })) { current = h; input.value = ''; render(); scrollToList(); }
+    else if (CATS.some(function (c) { return c.id === h; })) { current = h; input.value = ''; render(); }
   });
+  // Страница всегда открывается с самого верха
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   fromUrl();
+  window.scrollTo(0, 0);
+  window.addEventListener('load', function () { if (!location.hash || location.hash.indexOf('#p-') === 0 || CATS.some(function (c) { return '#' + c.id === location.hash; })) window.scrollTo(0, 0); });
 })();
